@@ -43,6 +43,36 @@
             tapping-term-ms = <200>;
             bindings = <&none>, <&kp LC(Z)>;
         };
+
+        // Left bracket system: ( [ { with plain/shift/cmd
+        left_bracket: left_bracket_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&lbkt_shift>, <&kp LBRC>;  // Normal vs Cmd = {
+            mods = <(MOD_LGUI|MOD_RGUI)>;
+        };
+
+        lbkt_shift: left_bracket_shift {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LPAR>, <&kp LBKT>;    // Normal = ( vs Shift = [
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // Right bracket system: ) ] } with plain/shift/cmd
+        right_bracket: right_bracket_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&rbkt_shift>, <&kp RBRC>;  // Normal vs Cmd = }
+            mods = <(MOD_LGUI|MOD_RGUI)>;
+        };
+
+        rbkt_shift: right_bracket_shift {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp RPAR>, <&kp RBKT>;    // Normal = ) vs Shift = ]
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
     };
 };
 
@@ -63,8 +93,8 @@
 
         base_layer {
             bindings = <
-                &kp TAB         &kp Q           &kp W           &kp F           &kp P           &kp B           &kp J           &kp L           &kp U           &kp Y           &kp SQT         &kp BSPC
-                &kp ESC         &mt LCTRL A     &mt LALT R      &mt LGUI S      &mt LSHFT T     &kp G           &kp M           &mt RSHFT N     &mt RGUI E      &mt RALT I      &mt RCTRL O     &kp SEMI
+                &kp MINUS       &kp Q           &kp W           &kp F           &kp P           &kp B           &kp J           &kp L           &kp U           &kp Y           &kp SQT         &none
+                &left_bracket   &mt LCTRL A     &mt LALT R      &mt LGUI S      &mt LSHFT T     &kp G           &kp M           &mt RSHFT N     &mt RGUI E      &mt RALT I      &mt RCTRL O     &right_bracket
                 &mt LSHFT MINUS &lt BUTTON Z    &mt RALT X      &kp C           &kp D           &kp V           &kp K           &kp H           &kp COMMA       &mt RALT DOT    &lt BUTTON FSLH &kp ESC
                                                 &lt MEDIA ESC   &lt NAV SPACE   &lt MOUSE TAB   &lt SYM RET     &lt NUM BSPC    &lt FUN ESC
             >;
