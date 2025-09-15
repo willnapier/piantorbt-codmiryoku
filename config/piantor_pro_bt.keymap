@@ -131,9 +131,9 @@
         num_layer {
             bindings = <
                 &trans          &kp LBKT        &kp N7          &kp N8          &kp N9          &kp RBKT        &none           &to BASE        &none           &none           &bootloader     &trans
-                &trans          &kp GRAVE       &kp N4          &kp N5          &kp N6          &kp EQUAL       &none           &kp LSHFT       &kp LGUI        &kp LALT        &kp LCTRL       &none
+                &trans          &kp GRAVE       &kp N4          &kp N5          &kp N6          &kp EQUAL       &kp N0          &kp LSHFT       &kp LGUI        &kp LALT        &kp LCTRL       &none
                 &trans          &kp TILDE       &kp N1          &kp N2          &kp N3          &none           &none           &to NUM         &to NAV         &kp RALT        &sys_reset      &trans
-                                                &kp DOT         &kp N0          &none           &none           &none           &kp DEL
+                                                &kp DOT         &kp SPACE       &none           &none           &none           &kp DEL
             >;
         };
 
