@@ -54,6 +54,14 @@
             bindings = <&none>, <&kp LC(Z)>;
         };
 
+        td_num_media: tap_dance_num_media {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_NUM_MEDIA";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&num_word>, <&mo MEDIA>;
+        };
+
         // Smart shift with parentheses on shift - urob-inspired simplified version
         smart_shift_left: smart_shift_left_morph {
             compatible = "zmk,behavior-mod-morph";
@@ -115,7 +123,7 @@
                 &kp PIPE        &kp Q           &kp W           &kp F           &kp P           &kp B           &kp J           &kp L           &kp U           &kp Y           &kp SQT         &question_combo
                 &smart_shift_left &mt LCTRL A   &mt LALT R      &mt LGUI S      &mt LSHFT T     &kp G           &kp M           &mt RSHFT N     &mt RGUI E      &mt RALT I      &mt RCTRL O     &smart_shift_right
                 &none           &kp Z           &mt RALT X      &kp C           &kp D           &kp V           &kp K           &kp H           &kp COMMA       &mt RALT DOT    &slash_morph    &colon_semi
-                                                &num_word              &lt NAV SPACE   &lt MOUSE TAB   &lt SYM RET     &lt NUM BSPC    &lt FUN ESC
+                                                &td_num_media          &lt NAV SPACE   &lt MOUSE TAB   &lt SYM RET     &lt NUM BSPC    &lt FUN ESC
             >;
         };
 
