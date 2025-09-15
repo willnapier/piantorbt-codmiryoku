@@ -48,7 +48,7 @@ west zephyr-export
 ### Layers
 0. BASE - Colemak-DH with home row mods
 1. SYM - Symbols
-2. NUM - Numbers/numpad
+2. NUM - Numbers/numpad with num_word support (see NUM_WORD_IMPLEMENTATION.md)
 3. NAV - Navigation
 4. MEDIA - Media controls and Bluetooth profiles
 5. MOUSE - Mouse emulation
@@ -56,9 +56,15 @@ west zephyr-export
 7. BUTTON - Additional mouse buttons
 
 ### Extra Keys (vs 36-key layout)
-- **Left side**: Tab (top-left), Esc (middle-left), Shift (bottom-left)
-- **Right side**: Backspace (top-right), Semicolon (middle-right), Shift (bottom-right)
-- **Transparent** on all non-base layers to avoid conflicts
+- **Left side**: Pipe (top-left), Smart Shift (middle-left), none (bottom-left)
+- **Right side**: Question/Exclaim (top-right), Smart Shift (middle-right), Colon/Semi (bottom-right)
+- **Transparent** on most non-base layers for fallthrough behavior
+
+### Key Features
+- **num_word**: Tap leftmost thumb for automatic number layer (exits on SPACE/ENTER)
+- **Smart Shift**: Shift keys that produce parentheses when double-tapped
+- **Cognitive Consistency**: Punctuation in same positions across layers (MINUS, COMMA, DOT, FSLH)
+- **Shift Behaviors**: Leverages standard keyboard shift (e.g., Shift+EQUAL = PLUS)
 
 ## Common Tasks
 
