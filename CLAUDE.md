@@ -61,10 +61,11 @@ west zephyr-export
 - **Transparent** on most non-base layers for fallthrough behavior
 
 ### Key Features
-- **num_word**: Tap leftmost thumb for automatic number layer (exits on SPACE/ENTER)
+- **Cognitive Consistency**: Punctuation in same positions across layers (MINUS, COMMA, DOT, FSLH, TILDE)
 - **Smart Shift**: Shift keys that produce parentheses when double-tapped
-- **Cognitive Consistency**: Punctuation in same positions across layers (MINUS, COMMA, DOT, FSLH)
 - **Shift Behaviors**: Leverages standard keyboard shift (e.g., Shift+EQUAL = PLUS)
+- **Simplified thumbs**: ESC/MEDIA on leftmost thumb (tap/hold)
+- **num_word**: REMOVED due to stability issues (see NUM_WORD_IMPLEMENTATION.md)
 
 ## Common Tasks
 

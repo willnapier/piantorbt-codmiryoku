@@ -1,7 +1,10 @@
 # num_word Implementation Documentation
 
 ## Overview
-Complete implementation of urob's num_word behavior for the Piantor Pro BT keyboard with Colemak-DH base layer. This document captures the design decisions, pitfalls avoided, and final optimized solution achieved on 2025-09-15.
+~~Complete implementation~~ **REMOVED** - urob's num_word behavior for the Piantor Pro BT keyboard with Colemak-DH base layer. This document captures the design decisions, pitfalls avoided, ~~and final optimized solution~~ and why it was ultimately removed on 2025-09-15.
+
+## UPDATE: num_word Removed
+After extensive implementation work, num_word was removed due to causing complete keyboard malfunction. The complex custom behaviors required created build errors and rendered the keyboard unusable. Decision made to prioritize stability over this feature.
 
 ## The Challenge
 Implement num_word (automatic number layer) functionality that:
