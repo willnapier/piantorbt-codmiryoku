@@ -48,7 +48,6 @@
 
         td_ctrlz: tap_dance {
             compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_CTRL_Z";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&none>, <&kp LC(Z)>;
@@ -56,7 +55,6 @@
 
         td_num_media: tap_dance_num_media {
             compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_NUM_MEDIA";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&num_word>, <&mo MEDIA>;
