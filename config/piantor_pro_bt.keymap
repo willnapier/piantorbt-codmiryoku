@@ -40,7 +40,6 @@
         num_word: num_word {
             compatible = "zmk,behavior-auto-layer";
             #binding-cells = <1>;
-            layer = <NUM>;
             continue-list = <N0 N1 N2 N3 N4 N5 N6 N7 N8 N9 DOT COMMA SPACE BACKSPACE DELETE>;
             ignore-modifiers;
         };
