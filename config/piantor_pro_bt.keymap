@@ -75,10 +75,10 @@
         };
 
         // Forward slash / backslash on same key
-        slash_combo: slash_combo_morph {
+        slash_morph: slash_behavior {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp FSLH>, <&kp BSLH>;    // Normal = / vs Shift = \
+            bindings = <&kp FSLH>, <&kp BSLH>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -119,7 +119,7 @@
             bindings = <
                 &kp PIPE        &kp Q           &kp W           &kp F           &kp P           &kp B           &kp J           &kp L           &kp U           &kp Y           &kp SQT         &question_combo
                 &left_bracket   &mt LCTRL A     &mt LALT R      &mt LGUI S      &mt LSHFT T     &kp G           &kp M           &mt RSHFT N     &mt RGUI E      &mt RALT I      &mt RCTRL O     &right_bracket
-                &mt LSHFT MINUS &lt BUTTON Z    &mt RALT X      &kp C           &kp D           &kp V           &kp K           &kp H           &kp COMMA       &mt RALT DOT    &slash_combo    &colon_semi
+                &mt LSHFT MINUS &lt BUTTON Z    &mt RALT X      &kp C           &kp D           &kp V           &kp K           &kp H           &kp COMMA       &mt RALT DOT    &slash_morph    &colon_semi
                                                 &lt MEDIA ESC   &lt NAV SPACE   &lt MOUSE TAB   &lt SYM RET     &lt NUM BSPC    &lt FUN ESC
             >;
         };
