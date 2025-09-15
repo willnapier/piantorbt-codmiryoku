@@ -86,7 +86,7 @@
         question_combo: question_combo_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp QMARK>, <&kp EXCL>;   // Normal = ? vs Shift = !
+            bindings = <&kp QUESTION>, <&kp EXCLAMATION>;   // Normal = ? vs Shift = !
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
