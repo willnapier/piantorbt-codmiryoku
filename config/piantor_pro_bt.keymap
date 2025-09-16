@@ -22,7 +22,6 @@
 #define MEDIA 4
 #define MOUSE 5
 #define FUN 6
-#define BUTTON 7
 
 // Miryoku timeless HRM settings
 #define QUICK_TAP_MS 175
@@ -163,13 +162,5 @@
             >;
         };
 
-        button_layer {
-            bindings = <
-                &trans          &td_ctrlz       &kp LC(X)       &kp LC(C)       &kp LC(V)       &kp LC(Y)       &kp LC(Y)       &kp LC(V)       &kp LC(C)       &kp LC(X)       &td_ctrlz       &trans
-                &trans          &kp LCTRL       &kp LALT        &kp LGUI        &kp LSHFT       &none           &none           &kp RSHFT       &kp RGUI        &kp RALT        &kp RCTRL       &none
-                &trans          &td_ctrlz       &kp LC(X)       &kp LC(C)       &kp LC(V)       &kp LC(Y)       &kp LC(Y)       &kp LC(V)       &kp LC(C)       &kp LC(X)       &td_ctrlz       &trans
-                                                &mkp MCLK       &mkp LCLK       &mkp RCLK       &mkp RCLK       &mkp LCLK       &mkp MCLK
-            >;
-        };
     };
 };
