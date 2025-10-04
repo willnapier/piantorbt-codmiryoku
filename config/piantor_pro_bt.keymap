@@ -101,6 +101,14 @@
             bindings = <&kp MINUS>;
             layers = <BASE>;
         };
+
+        // , + . = ? (question) / ! (exclamation when shifted)
+        combo_question {
+            timeout-ms = <50>;
+            key-positions = <32 33>;
+            bindings = <&question_combo>;
+            layers = <BASE>;
+        };
     };
 };
 
