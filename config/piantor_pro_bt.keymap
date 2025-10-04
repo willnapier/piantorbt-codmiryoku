@@ -82,6 +82,26 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
     };
+
+    combos {
+        compatible = "zmk,combos";
+
+        // L + U = : (colon)
+        combo_colon {
+            timeout-ms = <50>;
+            key-positions = <7 8>;
+            bindings = <&kp COLON>;
+            layers = <BASE>;
+        };
+
+        // U + Y = - (minus/hyphen)
+        combo_minus {
+            timeout-ms = <50>;
+            key-positions = <8 9>;
+            bindings = <&kp MINUS>;
+            layers = <BASE>;
+        };
+    };
 };
 
 // Configure acceleration behavior (Urob-style)
