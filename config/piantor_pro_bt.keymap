@@ -110,6 +110,15 @@
             layers = <BASE>;
         };
 
+        // Safety combo: prevent accidental Ctrl+Z suspension when brushing A while pressing Z
+        combo_az_null {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <50>;
+            key-positions = <13 25>;  // A + Z
+            bindings = <&none>;
+            layers = <BASE>;
+        };
+
         // Left half bootloader: hold top-left corner (Q+W+F)
         combo_bootloader_left {
             timeout-ms = <100>;
