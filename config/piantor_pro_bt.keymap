@@ -278,14 +278,16 @@
 
         // Left half bootloader: hold top-left corner (Q+W+F)
         combo_bootloader_left {
-            timeout-ms = <100>;
+            timeout-ms = <300>;
+            slow-release;
             key-positions = <1 2 3>;
             bindings = <&bootloader>;
         };
 
         // Right half bootloader: hold top-right corner (U+Y+') - symmetrical
         combo_bootloader_right {
-            timeout-ms = <100>;
+            timeout-ms = <300>;
+            slow-release;
             key-positions = <8 9 10>;
             bindings = <&bootloader>;
         };
