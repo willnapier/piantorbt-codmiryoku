@@ -57,7 +57,55 @@ All mathematical operations remain fully functional:
 - **Formatting**: `, .` for thousands and decimals
 - **Grouping**: `[ ]` brackets, `( )` via smart shift
 
-### NAV Layer Edit Commands (NEW 2025-10-07)
+### Symbol Combos (NEW 2025-10-07)
+
+**11 symbol combos for ergonomic programming:**
+
+| Combo | Keys | Output | Use Cases |
+|-------|------|--------|-----------|
+| **Original (Pre-existing)** |
+| L+U | 7, 8 | `:` / `;` (shifted) | Python, CSS, general punctuation |
+| U+Y | 8, 9 | `-` | Minus, hyphen, option flags |
+| ,+. | 32, 33 | `?` / `!` (shifted) | Questions, exclamations |
+| **NEW (2025-10-07)** |
+| A+R | 13, 14 | `#` | Comments, headers, shell |
+| W+F | 2, 3 | `[` / `{` (shifted) | Arrays, dicts, JSON, code blocks |
+| F+P | 3, 4 | `]` / `}` (shifted) | Closing brackets |
+| I+O | 21, 22 | `'` / `"` (shifted) | String literals, quotes |
+| C+D | 26, 27 | `|` | Shell pipes, regexes, OR logic |
+| X+C | 25, 26 | `@` | Email, handles, decorators |
+| H+, | 31, 32 | `+` | Addition, concatenation |
+| .+/ | 33, 34 | `£` | UK currency symbol |
+
+**Technical details:**
+- All combos use `timeout-ms = <50>` (fast simultaneous press)
+- All combos use `require-prior-idle-ms = <150>` (prevent accidental firing)
+- Active on BASE layer only
+- Shift-aware combos use mod-morph behaviors
+- 2-3x faster than switching to SYM layer
+
+**See:** [SYMBOL-COMBOS-IMPLEMENTATION.md](./SYMBOL-COMBOS-IMPLEMENTATION.md) for complete documentation
+
+### Navigation Combos (NEW 2025-10-07)
+
+**4 home row combos for tab and history navigation:**
+
+| Combo | Keys | macOS Shortcut | Linux Shortcut | Function |
+|-------|------|---------------|----------------|----------|
+| S+T | 15, 16 | Cmd+Shift+[ | Ctrl+PgUp | Previous tab |
+| N+E | 19, 20 | Cmd+Shift+] | Ctrl+PgDn | Next tab |
+| R+S | 14, 15 | Cmd+[ | Alt+Left | Back in history |
+| E+I | 20, 21 | Cmd+] | Alt+Right | Forward in history |
+
+**Design rationale:**
+- Most frequent (tabs) on inner positions (S+T, N+E)
+- Less frequent (history) on outer positions (R+S, E+I)
+- Left hand = "previous/back" semantic
+- Right hand = "next/forward" semantic
+
+**See:** [TAB-HISTORY-COMBOS-IMPLEMENTATION.md](./TAB-HISTORY-COMBOS-IMPLEMENTATION.md) for complete documentation
+
+### NAV Layer Edit Commands (2025-10-07)
 
 **Cross-platform edit commands on right hand top row:**
 
@@ -90,6 +138,8 @@ All mathematical operations remain fully functional:
 3. **Simple layer-tap behaviors**: Basic hold/tap behaviors are reliable and stable
 4. **Platform-specific keymaps** (2025-10-07): Separate keymap files for macOS/Linux provides true cross-platform support without complexity
 5. **NAV layer edit commands**: Placing Copy/Paste/Cut/Undo/Redo on NAV layer provides ergonomic, consistent access across platforms
+6. **Symbol combos** (2025-10-07): Frequency-driven combo allocation provides 2-3x faster access to programming symbols than SYM layer
+7. **Navigation combos** (2025-10-07): Home row tab/history navigation with platform-specific macros provides universal browser navigation
 
 ### What Failed
 1. **Complex custom behaviors**: media_num hold-tap with num_word caused complete keyboard failure
@@ -116,3 +166,7 @@ If num_word is reconsidered:
 ## Documentation
 - See `NUM_WORD_IMPLEMENTATION.md` for the full journey and why num_word was removed
 - See `CLAUDE.md` for project overview and quick commands
+- See `SYMBOL-COMBOS-IMPLEMENTATION.md` for complete symbol combo documentation (2025-10-07)
+- See `TAB-HISTORY-COMBOS-IMPLEMENTATION.md` for navigation combo documentation (2025-10-07)
+- See `CROSS-PLATFORM-KEYMAP-GUIDE.md` for platform-specific keymap details (2025-10-07)
+- See `COMBO-ALLOCATION-PROPOSAL.md` for complete combo design philosophy and allocation

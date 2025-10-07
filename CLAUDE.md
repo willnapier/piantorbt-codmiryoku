@@ -110,6 +110,8 @@ west zephyr-export
 - **Smart Shift**: Shift keys that produce parentheses when double-tapped
 - **Shift Behaviors**: Leverages standard keyboard shift (e.g., Shift+EQUAL = PLUS)
 - **Simplified thumbs**: ESC/MEDIA on leftmost thumb (tap/hold)
+- **Symbol Combos**: 11 combos for ergonomic programming (2025-10-07)
+- **Navigation Combos**: 4 home row combos for tab/history navigation (2025-10-07)
 - **num_word**: REMOVED due to stability issues (see NUM_WORD_IMPLEMENTATION.md)
 
 ## Common Tasks
@@ -139,3 +141,40 @@ When making changes to layers other than NAV/MOUSE:
 2. Manually copy to the other keymap file
 3. Verify NAV/MOUSE layers remain platform-specific
 4. Test both platforms to ensure consistency
+
+## Quick Reference
+
+### Symbol Combos (2025-10-07)
+
+**Programming symbols via simultaneous keypresses:**
+
+| Combo | Output | Common Use |
+|-------|--------|------------|
+| A+R | `#` | Comments, headers |
+| W+F | `[` or `{` (Shift) | Arrays, dicts, JSON |
+| F+P | `]` or `}` (Shift) | Closing brackets |
+| I+O | `'` or `"` (Shift) | String quotes |
+| C+D | `|` | Shell pipes, OR logic |
+| X+C | `@` | Email, decorators |
+| H+, | `+` | Addition, concat |
+| .+/ | `£` | UK currency |
+| L+U | `:` or `;` (Shift) | Python, CSS |
+| U+Y | `-` | Minus, hyphen |
+| ,+. | `?` or `!` (Shift) | Questions |
+
+**How to use:** Press both keys simultaneously (within 50ms) after brief pause (150ms)
+
+**See:** [SYMBOL-COMBOS-IMPLEMENTATION.md](./SYMBOL-COMBOS-IMPLEMENTATION.md) for complete documentation
+
+### Navigation Combos (2025-10-07)
+
+**Tab and history navigation on home row:**
+
+| Combo | macOS | Linux | Function |
+|-------|-------|-------|----------|
+| S+T | Cmd+Shift+[ | Ctrl+PgUp | Previous tab |
+| N+E | Cmd+Shift+] | Ctrl+PgDn | Next tab |
+| R+S | Cmd+[ | Alt+Left | Back in history |
+| E+I | Cmd+] | Alt+Right | Forward in history |
+
+**See:** [TAB-HISTORY-COMBOS-IMPLEMENTATION.md](./TAB-HISTORY-COMBOS-IMPLEMENTATION.md) for complete documentation
