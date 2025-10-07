@@ -117,7 +117,9 @@
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <5>;
-            bindings = <&kp LGUI>, <&kp LSHFT>, <&kp LBKT>, <&kp LGUI>;
+            bindings = <&macro_press &kp LGUI &kp LSHFT>
+                     , <&macro_tap &kp LBKT>
+                     , <&macro_release &kp LGUI &kp LSHFT>;
         };
 
         macro_tab_next: macro_tab_next {
@@ -125,7 +127,9 @@
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <5>;
-            bindings = <&kp LGUI>, <&kp LSHFT>, <&kp RBKT>, <&kp LGUI>;
+            bindings = <&macro_press &kp LGUI &kp LSHFT>
+                     , <&macro_tap &kp RBKT>
+                     , <&macro_release &kp LGUI &kp LSHFT>;
         };
 
         // History navigation macros - macOS version (Cmd+[ and ])
@@ -134,7 +138,9 @@
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <5>;
-            bindings = <&kp LGUI>, <&kp LBKT>, <&kp LGUI>;
+            bindings = <&macro_press &kp LGUI>
+                     , <&macro_tap &kp LBKT>
+                     , <&macro_release &kp LGUI>;
         };
 
         macro_history_forward: macro_history_forward {
@@ -142,7 +148,9 @@
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <5>;
-            bindings = <&kp LGUI>, <&kp RBKT>, <&kp LGUI>;
+            bindings = <&macro_press &kp LGUI>
+                     , <&macro_tap &kp RBKT>
+                     , <&macro_release &kp LGUI>;
         };
     };
 
