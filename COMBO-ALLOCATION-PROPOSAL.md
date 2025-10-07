@@ -202,17 +202,30 @@ N+E combo → focus-column-right
 
 ---
 
-## Reserved Symbol Combos (Do Not Use)
+## Symbol Combos - Complete Allocation
 
-These positions are already allocated to symbols in your base layer:
+### Original Symbol Combos (Pre-existing)
 
-| Combo | Keys (Colemak-DH) | Positions           | Output |
-| ----- | ----------------- | ------------------- | ------ |
-| L + U | 7, 8              | `:` / `;` (shifted) |        |
-| U + Y | 8, 9              | `-` (minus/hyphen)  |        |
-| , + . | 32, 33            | `?` / `!` (shifted) |        |
+| Combo | Keys (Colemak-DH) | Positions | Output | Status |
+| ----- | ----------------- | --------- | ------ | ------ |
+| L + U | 7, 8 | `:` / `;` (shifted) | ✅ Using mod-morph |
+| U + Y | 8, 9 | `-` (minus/hyphen) | ✅ Implemented |
+| , + . | 32, 33 | `?` / `!` (shifted) | ✅ Using mod-morph |
 
-**Status:** ✅ Fixed L+U to use `colon_semi` morph behavior for proper shift support (in piantor_pro_bt.keymap).
+### NEW Symbol Combos (2025-10-07)
+
+| Combo | Keys (Colemak-DH) | Positions | Output | Rationale |
+| ----- | ----------------- | --------- | ------ | --------- |
+| A + R | 13, 14 | `#` (hash) | Frequent in programming, awkward on SYM layer |
+| W + F | 2, 3 | `[` / `{` (shifted) | Common in programming, improves ergonomics |
+| F + P | 3, 4 | `]` / `}` (shifted) | Complements W+F, reduces index finger stretch |
+| X + C | 25, 26 | `@` (at) | Common in emails, handles, decorators |
+| C + D | 26, 27 | `|` (pipe) | Essential for shells, regexes, programming |
+| H + , | 31, 32 | `+` (plus) | Common operator, easier than SYM layer |
+| . + / | 33, 34 | `£` (pound) | UK currency symbol via Shift+3 |
+| I + O | 21, 22 | `'` / `"` (shifted) | High-frequency quotes for strings/text |
+
+**Implementation:** All new combos use `timeout-ms = <50>`, `require-prior-idle-ms = <150>`, active on BASE layer only.
 
 ---
 
@@ -496,13 +509,13 @@ Potential for entire new layers accessible via hold-tap on underused base keys.
 
 ## Summary (REVISED 2025-10-07)
 
-**Status:** Phase 1 implementation complete - tab/history combos added
-**Total Active Combos:** 7 combos (3 symbols + 4 navigation)
+**Status:** Phase 1 implementation complete - tab/history + symbol combos added
+**Total Active Combos:** 15 combos (11 symbols + 4 navigation)
 **Edit Commands:** Already on NAV layer (no combos needed)
 **Tab/History Navigation:** New home row combos (S+T, N+E, R+S, E+I)
-**Prime Real Estate Preserved:** Outer positions (A+R, I+O) still available
+**Symbol Access:** Improved access to frequently-used programming symbols (#, @, |, [], {}, ', ", +, £)
 **Implementation Time:** Awaiting build and testing
-**Coverage:** Symbol entry + cross-platform edit commands + tab/history navigation + OS-level window management
+**Coverage:** Comprehensive symbol entry + cross-platform edit commands + tab/history navigation + OS-level window management
 
 ### Key Design Principles
 
@@ -530,9 +543,19 @@ Potential for entire new layers accessible via hold-tap on underused base keys.
 - ✅ Undo/Redo: NAV+'/J (td_ctrlz and LC(Y), already implemented)
 
 **Firmware Symbol Combos (Current):**
-- ✅ L+U → colon/semicolon
-- ✅ U+Y → minus
-- ✅ ,+. → question/exclamation
+- ✅ L+U → colon/semicolon (positions 7, 8)
+- ✅ U+Y → minus (positions 8, 9)
+- ✅ ,+. → question/exclamation (positions 32, 33)
+
+**Firmware Symbol Combos (NEW 2025-10-07):**
+- ✅ A+R → # (hash) (positions 13, 14)
+- ✅ W+F → [ / { (shifted) (positions 2, 3)
+- ✅ F+P → ] / } (shifted) (positions 3, 4)
+- ✅ X+C → @ (at) (positions 25, 26)
+- ✅ C+D → | (pipe) (positions 26, 27)
+- ✅ H+, → + (plus) (positions 31, 32)
+- ✅ .+/ → £ (pound sterling) (positions 33, 34)
+- ✅ I+O → ' / " (shifted) (positions 21, 22)
 
 **Firmware Navigation Combos (NEW 2025-10-07):**
 - ✅ S+T → Previous tab (Cmd+Shift+[ on macOS, Ctrl+PgUp on Linux)

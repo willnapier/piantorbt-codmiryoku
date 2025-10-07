@@ -86,6 +86,28 @@
             bindings = <&kp COLON>, <&kp SEMI>;   // Normal = : vs Shift = ;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
+        // Symbol combo behaviors with shift variants
+        bracket_left: bracket_left_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LBKT>, <&kp LBRC>;   // [ normal, { shifted
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        bracket_right: bracket_right_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp RBKT>, <&kp RBRC>;   // ] normal, } shifted
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        quote: quote_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp SQT>, <&kp DQT>;   // ' normal, " shifted
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
     };
 
     macros {
@@ -191,6 +213,71 @@
             require-prior-idle-ms = <150>;
             key-positions = <20 21>;  // E + I
             bindings = <&macro_history_forward>;
+            layers = <BASE>;
+        };
+
+        // Symbol combos
+        combo_hash {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <150>;
+            key-positions = <13 14>;  // A + R
+            bindings = <&kp HASH>;
+            layers = <BASE>;
+        };
+
+        combo_bracket_left {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <150>;
+            key-positions = <2 3>;  // W + F
+            bindings = <&bracket_left>;
+            layers = <BASE>;
+        };
+
+        combo_bracket_right {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <150>;
+            key-positions = <3 4>;  // F + P
+            bindings = <&bracket_right>;
+            layers = <BASE>;
+        };
+
+        combo_at {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <150>;
+            key-positions = <25 26>;  // X + C
+            bindings = <&kp AT>;
+            layers = <BASE>;
+        };
+
+        combo_pipe {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <150>;
+            key-positions = <26 27>;  // C + D
+            bindings = <&kp PIPE>;
+            layers = <BASE>;
+        };
+
+        combo_plus {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <150>;
+            key-positions = <31 32>;  // H + ,
+            bindings = <&kp PLUS>;
+            layers = <BASE>;
+        };
+
+        combo_pound {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <150>;
+            key-positions = <33 34>;  // . + /
+            bindings = <&kp LS(N3)>;  // £ is Shift+3 on UK layout
+            layers = <BASE>;
+        };
+
+        combo_quote {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <150>;
+            key-positions = <21 22>;  // I + O
+            bindings = <&quote>;
             layers = <BASE>;
         };
 
