@@ -23,26 +23,6 @@
 #define MOUSE 5
 #define FUN 6
 
-// Cross-platform HRM optimization
-// macOS: Gui (Cmd) on S/E positions for Cmd+shortcuts
-// Linux: Ctrl on S/E positions for Ctrl+shortcuts
-// Result: Same finger movements produce OS-appropriate shortcuts
-#ifdef CONFIG_MACOS_BUILD
-    #define HRM_L1 LCTRL    // A = Ctrl
-    #define HRM_L2 LALT     // R = Alt
-    #define HRM_L3 LGUI     // S = Gui (Cmd)
-    #define HRM_R1 RGUI     // E = Gui (Cmd)
-    #define HRM_R2 RALT     // I = Alt
-    #define HRM_R3 RCTRL    // O = Ctrl
-#else
-    #define HRM_L1 LGUI     // A = Gui (Super)
-    #define HRM_L2 LALT     // R = Alt
-    #define HRM_L3 LCTRL    // S = Ctrl
-    #define HRM_R1 RCTRL    // E = Ctrl
-    #define HRM_R2 RALT     // I = Alt
-    #define HRM_R3 RGUI     // O = Gui (Super)
-#endif
-
 // Miryoku timeless HRM settings
 #define QUICK_TAP_MS 175
 
@@ -173,7 +153,7 @@
         base_layer {
             bindings = <
                 &none           &kp Q           &kp W           &kp F           &kp P           &kp B           &kp J           &kp L           &kp U           &kp Y           &kp SQT         &question_combo
-                &smart_shift_left &mt HRM_L1 A  &mt HRM_L2 R    &mt HRM_L3 S    &mt LSHFT T     &kp G           &kp M           &mt RSHFT N     &mt HRM_R1 E    &mt HRM_R2 I    &mt HRM_R3 O    &smart_shift_right
+                &smart_shift_left &mt LCTRL A   &mt LALT R      &mt LGUI S      &mt LSHFT T     &kp G           &kp M           &mt RSHFT N     &mt RGUI E      &mt RALT I      &mt RCTRL O     &smart_shift_right
                 &none           &kp Z           &mt RALT X      &kp C           &kp D           &kp V           &kp K           &kp H           &kp COMMA       &mt RALT DOT    &slash_morph    &colon_semi
                                                 &lt MEDIA ESC           &lt NAV SPACE   &lt MOUSE TAB   &lt SYM RET     &lt NUM BSPC    &lt FUN ESC
             >;
