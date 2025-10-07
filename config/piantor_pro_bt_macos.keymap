@@ -2,6 +2,10 @@
  * Copyright (c) 2025 Will Napier
  *
  * SPDX-License-Identifier: MIT
+ *
+ * macOS-SPECIFIC KEYMAP
+ * This keymap uses Cmd (LGUI) instead of Ctrl for edit commands
+ * Identical to piantor_pro_bt.keymap except for NAV and MOUSE layers
  */
 
 #include <behaviors.dtsi>
@@ -36,11 +40,12 @@
 
 / {
     behaviors {
-        td_ctrlz: tap_dance {
+        // macOS-SPECIFIC: Cmd+Z for undo (instead of Ctrl+Z)
+        td_cmdz: tap_dance {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&none>, <&kp LC(Z)>;
+            bindings = <&none>, <&kp LG(Z)>;  // LG = Left GUI (Cmd on macOS)
         };
 
         // Smart shift with parentheses on shift - urob-inspired simplified version
@@ -84,13 +89,13 @@
     };
 
     macros {
-        // Tab navigation macros - Linux version (Ctrl+PgUp and PgDn)
+        // Tab navigation macros - macOS version (Cmd+Shift+[ and ])
         macro_tab_prev: macro_tab_prev {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <5>;
-            bindings = <&kp LCTRL>, <&kp PG_UP>, <&kp LCTRL>;
+            bindings = <&kp LGUI>, <&kp LSHFT>, <&kp LBKT>, <&kp LGUI>;
         };
 
         macro_tab_next: macro_tab_next {
@@ -98,16 +103,16 @@
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <5>;
-            bindings = <&kp LCTRL>, <&kp PG_DN>, <&kp LCTRL>;
+            bindings = <&kp LGUI>, <&kp LSHFT>, <&kp RBKT>, <&kp LGUI>;
         };
 
-        // History navigation macros - Linux version (Alt+Left and Alt+Right)
+        // History navigation macros - macOS version (Cmd+[ and ])
         macro_history_back: macro_history_back {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <5>;
-            bindings = <&kp LALT>, <&kp LEFT>, <&kp LALT>;
+            bindings = <&kp LGUI>, <&kp LBKT>, <&kp LGUI>;
         };
 
         macro_history_forward: macro_history_forward {
@@ -115,7 +120,7 @@
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <5>;
-            bindings = <&kp LALT>, <&kp RIGHT>, <&kp LALT>;
+            bindings = <&kp LGUI>, <&kp RBKT>, <&kp LGUI>;
         };
     };
 
@@ -146,7 +151,7 @@
             layers = <BASE>;
         };
 
-        // Safety combo: prevent accidental Ctrl+Z suspension when brushing A while pressing Z
+        // Safety combo: prevent accidental Cmd+Z when brushing A while pressing Z
         combo_az_null {
             timeout-ms = <50>;
             require-prior-idle-ms = <50>;
@@ -249,7 +254,8 @@
 
         nav_layer {
             bindings = <
-                &trans          &bootloader     &to BASE        &to BASE        &to BASE        &none           &kp LC(Y)       &kp LC(V)       &kp LC(C)       &kp LC(X)       &td_ctrlz       &kp UNDER
+                // macOS-SPECIFIC: Using LG (Cmd) instead of LC (Ctrl)
+                &trans          &bootloader     &to BASE        &to BASE        &to BASE        &none           &kp LG(Y)       &kp LG(V)       &kp LG(C)       &kp LG(X)       &td_cmdz        &kp UNDER
                 &trans          &kp LCTRL       &kp LALT        &kp LGUI        &kp LSHFT       &none           &caps_word      &kp LEFT        &kp DOWN        &kp UP          &kp RIGHT       &kp MINUS
                 &trans          &sys_reset      &kp RALT        &to NUM         &to NAV         &kp PIPE        &kp INS         &kp HOME        &kp PG_DN       &kp PG_UP       &kp END         &trans
                                                 &none           &none           &none           &kp RET         &kp BSPC        &kp DEL
@@ -267,7 +273,8 @@
 
         mouse_layer {
             bindings = <
-                &trans          &bootloader     &to BASE        &none           &none           &none           &kp LC(Y)       &kp LC(V)       &kp LC(C)       &kp LC(X)       &td_ctrlz       &trans
+                // macOS-SPECIFIC: Using LG (Cmd) instead of LC (Ctrl)
+                &trans          &bootloader     &to BASE        &none           &none           &none           &kp LG(Y)       &kp LG(V)       &kp LG(C)       &kp LG(X)       &td_cmdz        &trans
                 &trans          &kp LCTRL       &kp LALT        &kp LGUI        &kp LSHFT       &none           &none           &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP    &mmv MOVE_RIGHT &none
                 &trans          &sys_reset      &kp RALT        &to SYM         &to MOUSE       &none           &none           &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP    &msc SCRL_RIGHT &trans
                                                 &none           &none           &none           &mkp RCLK       &mkp LCLK       &mkp MCLK

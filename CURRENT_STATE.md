@@ -1,9 +1,25 @@
 # Current Keyboard State - Piantor Pro BT Colemak-DH
 
-## Date: 2025-09-15
-## Status: WORKING ✅
+## Date: 2025-10-07
+## Status: WORKING ✅ - Dual Platform Support
 
 ## Current Configuration
+
+### Platform-Specific Keymaps (NEW 2025-10-07)
+
+**Two keymap files now maintained:**
+
+1. **`piantor_pro_bt.keymap`** - Linux version (Nimbini)
+   - Uses `LC()` (Ctrl) for edit commands
+   - Uses `td_ctrlz` tap dance behavior for undo
+   - Built automatically by GitHub Actions
+
+2. **`piantor_pro_bt_macos.keymap`** - macOS version
+   - Uses `LG()` (Cmd) for edit commands
+   - Uses `td_cmdz` tap dance behavior for undo
+   - Built manually on local machine
+
+**Differences limited to NAV and MOUSE layers only** - all other layers identical.
 
 ### Base Layer Changes
 - **Z key**: Simple `&kp Z` (removed redundant `&lt BUTTON Z` layer-tap)
@@ -41,12 +57,28 @@ All mathematical operations remain fully functional:
 - **Formatting**: `, .` for thousands and decimals
 - **Grouping**: `[ ]` brackets, `( )` via smart shift
 
+### NAV Layer Edit Commands (NEW 2025-10-07)
+
+**Cross-platform edit commands on right hand top row:**
+
+| Action | macOS Version | Linux Version | Base Key |
+|--------|--------------|---------------|----------|
+| Redo   | Cmd+Y | Ctrl+Y | J (pos 6) |
+| Paste  | Cmd+V | Ctrl+V | L (pos 7) |
+| Copy   | Cmd+C | Ctrl+C | U (pos 8) |
+| Cut    | Cmd+X | Ctrl+X | Y (pos 9) |
+| Undo   | Cmd+Z (double-tap) | Ctrl+Z (double-tap) | ' (pos 10) |
+
+**Usage:** Hold NAV (left thumb on SPACE) + press right hand key
+
+**Also available on MOUSE layer** with identical mappings
+
 ### Layer Access
 - **BASE**: Default layer, Colemak-DH
 - **SYM**: Hold right thumb enter key
 - **NUM**: Hold right thumb backspace key
-- **NAV**: Hold left thumb space key
-- **MOUSE**: Hold left thumb tab key
+- **NAV**: Hold left thumb space key (includes edit commands)
+- **MOUSE**: Hold left thumb tab key (includes edit commands)
 - **MEDIA**: Hold leftmost thumb key
 - **FUN**: Hold rightmost thumb key
 
@@ -56,6 +88,8 @@ All mathematical operations remain fully functional:
 1. **Cognitive consistency**: Placing punctuation in same positions across layers dramatically improves usability
 2. **Standard keyboard conventions**: Using Shift+EQUAL for PLUS is more intuitive than a dedicated key
 3. **Simple layer-tap behaviors**: Basic hold/tap behaviors are reliable and stable
+4. **Platform-specific keymaps** (2025-10-07): Separate keymap files for macOS/Linux provides true cross-platform support without complexity
+5. **NAV layer edit commands**: Placing Copy/Paste/Cut/Undo/Redo on NAV layer provides ergonomic, consistent access across platforms
 
 ### What Failed
 1. **Complex custom behaviors**: media_num hold-tap with num_word caused complete keyboard failure
