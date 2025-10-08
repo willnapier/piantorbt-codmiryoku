@@ -195,24 +195,6 @@
             bindings = <&kp EXCLAMATION>;
             layers = <BASE>;
         };
-
-        // Left half bootloader: hold top-left corner (Q+W+F)
-        // Longer timeout + slow-release = press all 3, hold, then release together
-        combo_bootloader_left {
-            timeout-ms = <300>;
-            slow-release;
-            key-positions = <1 2 3>;
-            bindings = <&bootloader>;
-        };
-
-        // Right half bootloader: hold top-right corner (U+Y+')
-        // Longer timeout + slow-release = press all 3, hold, then release together
-        combo_bootloader_right {
-            timeout-ms = <300>;
-            slow-release;
-            key-positions = <8 9 10>;
-            bindings = <&bootloader>;
-        };
     };
 };
 
