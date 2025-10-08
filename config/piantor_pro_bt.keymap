@@ -125,11 +125,11 @@
             layers = <BASE>;
         };
 
-        // , + . = ? (question) / ! (exclamation when shifted)
+        // , + . = ? (question mark)
         combo_question {
             timeout-ms = <50>;
             key-positions = <32 33>;
-            bindings = <&question_combo>;
+            bindings = <&kp QUESTION>;
             layers = <BASE>;
         };
 
@@ -183,11 +183,11 @@
             layers = <BASE>;
         };
 
-        combo_pound {
+        combo_exclaim {
             timeout-ms = <50>;
             require-prior-idle-ms = <150>;
             key-positions = <33 34>;  // . + /
-            bindings = <&kp LS(N3)>;  // £ is Shift+3 on UK layout
+            bindings = <&kp EXCLAMATION>;
             layers = <BASE>;
         };
 
