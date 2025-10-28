@@ -87,6 +87,29 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        // Plus / equal on same key
+        plus_equal: plus_equal_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp PLUS>, <&kp EQUAL>;   // Normal = + vs Shift = =
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // Browser navigation behaviors
+        browser_back: browser_back_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LG(LBKT)>, <&kp LG(LS(LBKT))>;   // Cmd+[ normal, Cmd+Shift+[ shifted (previous tab)
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        browser_forward: browser_forward_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LG(RBKT)>, <&kp LG(LS(RBKT))>;   // Cmd+] normal, Cmd+Shift+] shifted (next tab)
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
         // Symbol combo behaviors with shift variants
         bracket_left: bracket_left_morph {
             compatible = "zmk,behavior-mod-morph";
@@ -130,11 +153,11 @@
             layers = <BASE>;
         };
 
-        // , + . = ? (question mark)
+        // , + . = ? (question mark) / ! (exclamation when shifted)
         combo_question {
             timeout-ms = <50>;
             key-positions = <32 33>;
-            bindings = <&kp QUESTION>;
+            bindings = <&question_combo>;
             layers = <BASE>;
         };
 
@@ -184,7 +207,7 @@
             timeout-ms = <50>;
             require-prior-idle-ms = <150>;
             key-positions = <31 32>;  // H + ,
-            bindings = <&kp PLUS>;
+            bindings = <&plus_equal>;
             layers = <BASE>;
         };
 
@@ -233,7 +256,7 @@
 
         num_layer {
             bindings = <
-                &trans          &kp LBKT        &kp N7          &kp N8          &kp N9          &kp RBKT        &none           &to BASE        &none           &none           &bootloader     &trans
+                &trans          &kp LBKT        &kp N7          &kp N8          &kp N9          &kp RBKT        &none           &browser_back   &browser_forward &none          &bootloader     &trans
                 &trans          &kp GRAVE       &kp N4          &kp N5          &kp N6          &kp EQUAL       &none           &kp LSHFT       &kp LGUI        &kp LALT        &kp LCTRL       &kp MINUS
                 &trans          &kp TILDE       &kp N1          &kp N2          &kp N3          &kp PIPE           &kp STAR        &to NUM         &kp COMMA       &kp DOT         &kp FSLH        &sys_reset
                                                 &none           &kp N0          &none           &none           &none           &kp DEL
