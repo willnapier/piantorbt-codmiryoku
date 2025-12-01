@@ -269,8 +269,11 @@
         };
 
         media_layer {
+            // Screenshot keys on top row right (hold MEDIA left thumb + key):
+            // J=F13 region→file, L=F14 full→file, U=F15 window→file
+            // Y=F16 region→clip, '=F17 full→clip, ?=F18 window→clip (least used)
             bindings = <
-                &trans          &bootloader     &to BASE        &none           &none           &none           &none           &none           &none           &none           &none           &trans
+                &trans          &bootloader     &to BASE        &none           &none           &none           &kp F13         &kp F14         &kp F15         &kp F16         &kp F17         &kp F18
                 &trans          &kp LCTRL       &kp LALT        &kp LGUI        &kp LSHFT       &none           &out OUT_TOG    &kp C_PREV      &kp C_VOL_DN    &kp C_VOL_UP    &kp C_NEXT      &none
                 &trans          &sys_reset      &kp RALT        &to FUN         &to MEDIA       &none           &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_CLR      &trans
                                                 &none           &none           &none           &kp C_STOP      &kp C_PP        &kp C_MUTE
