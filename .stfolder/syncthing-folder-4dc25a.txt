@@ -1,0 +1,5 @@
+# This directory is a Syncthing folder marker.
+# Do not delete.
+
+folderID: piantor-zmk
+created: 2025-09-20T21:12:07+01:00
