@@ -257,11 +257,18 @@
     };
 };
 
-// Configure acceleration behavior (Urob-style)
+// Configure mouse movement acceleration (Urob-style)
 &mmv {
     acceleration-exponent = <1>;
     time-to-max-speed-ms = <60>;
     delay-ms = <0>;
+};
+
+// Configure mouse scroll - remove rate limiting for responsive repeated scrolls
+&msc {
+    acceleration-exponent = <0>;  // Linear, no acceleration
+    time-to-max-speed-ms = <0>;   // Immediate max speed
+    delay-ms = <0>;               // No delay between scrolls
 };
 
 / {
