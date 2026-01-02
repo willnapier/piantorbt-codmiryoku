@@ -6,14 +6,19 @@
 
 ## What Works Perfectly ✅
 
-### **Core Screenshot Functions (Confirmed Working)**
-1. **FUN+B** → Region selection → clipboard *(primary use case)*
-2. **Ctrl+FUN+B** → Region selection → file (~/Pictures/Screenshots/)
-3. **Super+Shift+FUN+B** → Full screen → clipboard
+### **Core Screenshot Functions (MEDIA layer + key)**
+| Key | F-key | Function |
+|-----|-------|----------|
+| **MEDIA+J** | F13 | Region → file |
+| **MEDIA+L** | F14 | Full screen → file |
+| **MEDIA+U** | F15 | Window → file |
+| **MEDIA+Y** | F16 | Region → clipboard |
+| **MEDIA+'** | F17 | Full screen → clipboard |
+| **MEDIA+?** | F18 | Window → clipboard |
 
 ### **Technical Breakthrough**
 - **Root cause identified**: Linux SysRq handler intercepts Alt+Print combinations before they reach Niri
-- **Clean solution implemented**: Use alternative modifier combinations that bypass SysRq entirely
+- **Clean solution implemented**: Dedicated F13-F18 keys bypass SysRq entirely
 - **Keyboard firmware confirmed working**: Karabiner Event Viewer on macOS proved hardware/firmware is perfect
 
 ## The 2-Day Learning Journey
@@ -27,7 +32,7 @@
 ### **The Breakthrough Moment**
 - **Karabiner Event Viewer test**: Proved keyboard firmware works perfectly on macOS
 - **wev vs Niri discovery**: Realized Niri intercepts Print Screen before wev sees it (normal behavior)
-- **File test confirmation**: `/tmp/print-test.txt` proved FUN+B was reaching Niri all along
+- **Solution**: Moved to F13-F18 keys on MEDIA layer, bound in Niri config
 
 ### **Key Insight**
 The problem was never the keyboard or firmware - it was Linux kernel SysRq handling combined with our attempts to "fix" a working system.
@@ -35,42 +40,32 @@ The problem was never the keyboard or firmware - it was Linux kernel SysRq handl
 ## Current Configuration
 
 ### **ZMK Firmware Status**
-- **Clean state**: Reverted to commit `ad8f80c7` (pre-screenshot modifications)
-- **Working keymap**: Standard `&kp PSCRN` in FUN layer position 5 (B key)
-- **No custom behaviors**: All mod-morph attempts removed
+- **Working keymap**: F13-F18 keys on MEDIA layer top row (positions J L U Y ' ?)
+- **No custom behaviors**: Simple `&kp Fxx` bindings, no mod-morph needed
 
 ### **Niri Configuration Status**
-- **Working bindings**: Print, Ctrl+Print, Super+Shift+Print confirmed functional
-- **Grammar choice**: Accepted irregular grammar to avoid Alt+Print SysRq conflicts
+- **Working bindings**: F13-F18 mapped to screenshot actions
 - **Location**: `~/.config/niri/config.kdl` on Nimbini
 
-## Outstanding Minor Issue
+## Screenshot Grammar (Final)
 
-### **Window Capture (Super+Shift+Ctrl+FUN+B)**
-- **Status**: Key combination may not be registering properly
-- **Troubleshooting**: Test binding added to verify if combination reaches Niri
-- **Helper script**: `~/.local/bin/niri-screenshot-window.sh` exists and ready
-- **Impact**: Low priority - core functionality (region/fullscreen) works perfectly
+All screenshots via **MEDIA layer** (hold left thumb MEDIA key):
 
-## Final Screenshot Grammar
-
-```
-✅ FUN+B                    → Region → clipboard      (most common)
-✅ Ctrl+FUN+B               → Region → file
-✅ Super+Shift+FUN+B        → Full screen → clipboard
-⚠️ Super+Shift+Ctrl+FUN+B   → Window → clipboard      (needs testing)
-📝 Super+Ctrl+FUN+B         → Full screen → file     (configured but untested)
-📝 Super+Shift+Ctrl+Alt+FUN+B → Window → file        (configured but untested)
-```
+| Combo | Output | Destination |
+|-------|--------|-------------|
+| MEDIA+J | F13 | Region → file |
+| MEDIA+L | F14 | Full → file |
+| MEDIA+U | F15 | Window → file |
+| MEDIA+Y | F16 | Region → clipboard |
+| MEDIA+' | F17 | Full → clipboard |
+| MEDIA+? | F18 | Window → clipboard |
 
 ## How to Resume This Project
 
 ### **When You Return to Nimbini:**
 
-1. **Test window capture**: Try `Super+Shift+Ctrl+FUN+B` and check for `/tmp/window-test.txt`
-2. **If window capture doesn't work**: The test file will tell us if it's a key combination issue or script issue
-3. **Test file functions**: Try `Super+Ctrl+FUN+B` to verify file saving works
-4. **Clean up test bindings**: Replace test echo commands with real screenshot commands
+1. **Verify Niri bindings**: Check `~/.config/niri/config.kdl` has F13-F18 mapped
+2. **Test each function**: Try each MEDIA+key combo to confirm all 6 work
 
 ### **Files to Reference:**
 - **ZMK config**: `/Users/williamnapier/piantor-zmk/config/piantor_pro_bt.keymap`
@@ -78,7 +73,7 @@ The problem was never the keyboard or firmware - it was Linux kernel SysRq handl
 - **Helper scripts**: `~/.local/bin/niri-screenshot-window*.sh` on Nimbini
 
 ### **Key Lesson for Future**
-**Don't fix what isn't broken**: The original system was working fine. The only real issue was the Super+Alt+Print SysRq conflict, which is now solved with alternative modifier combinations.
+**Avoid Print Screen entirely on Linux**: The SysRq handler intercepts Alt+Print combinations at the kernel level. Using dedicated F-keys (F13-F18) bypasses all conflicts cleanly.
 
 ## Project Success Metrics
 
