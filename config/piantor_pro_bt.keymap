@@ -34,6 +34,18 @@
 };
 
 / {
+    macros {
+        // British Pound Sterling via compose sequence (Menu, L, -)
+        // Works with ~/.XCompose on Linux
+        pound_macro: pound_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp K_APP>, <&kp L>, <&kp MINUS>;
+        };
+    };
+
     behaviors {
         td_ctrlz: tap_dance {
             compatible = "zmk,behavior-tap-dance";
@@ -253,7 +265,7 @@
             timeout-ms = <50>;
             require-prior-idle-ms = <150>;
             key-positions = <33 34>;  // . + /
-            bindings = <&kp LS(N3)>;  // Shift+3 => £ via custom host layout
+            bindings = <&pound_macro>;  // £ via compose sequence (Menu, L, -)
             layers = <BASE>;
         };
 
