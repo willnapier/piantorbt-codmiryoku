@@ -71,6 +71,7 @@ jobs:
           fi
           west build -s zmk/app -b ${{ matrix.board }} -- \
             -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" \
+            -DBOARD_ROOT="${GITHUB_WORKSPACE}" \
             $extra_args
 
       - name: Generate artifact name
