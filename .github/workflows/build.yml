@@ -2,5 +2,107 @@ name: Build ZMK firmware
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
+  matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Extract build matrix
+        id: set-matrix
+        run: |
+          matrix=$(python3 -c "
+          import yaml, json
+          with open('build.yaml') as f:
+              data = yaml.safe_load(f)
+          matrix = {'include': data['include']}
+          print(json.dumps(matrix))
+          ")
+          echo "matrix=$matrix" >> $GITHUB_OUTPUT
+
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/zmkfirmware/zmk-build-arm:3.5
+    needs: matrix
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.matrix.outputs.matrix) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Cache west modules
+        uses: actions/cache@v5
+        env:
+          cache-name: cache-zephyr-modules
+        with:
+          path: |
+            modules/
+            tools/
+            zephyr/
+            bootloader/
+            zmk/
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('config/west.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: West init
+        run: west init -l config
+
+      - name: West update
+        run: west update
+
+      - name: West zephyr-export
+        run: west zephyr-export
+
+      - name: West build (${{ matrix.board }})
+        run: |
+          extra_args=""
+          if [ -n "${{ matrix.shield }}" ]; then
+            extra_args="-DSHIELD=${{ matrix.shield }}"
+          fi
+          if [ -n "${{ matrix.snippet }}" ]; then
+            extra_args="$extra_args -DSNIPPET=${{ matrix.snippet }}"
+          fi
+          west build -s zmk/app -b ${{ matrix.board }} -- \
+            -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" \
+            $extra_args
+
+      - name: Generate artifact name
+        id: artifact-name
+        run: |
+          name="${{ matrix.board }}"
+          if [ -n "${{ matrix.shield }}" ]; then
+            name="${name}-${{ matrix.shield }}"
+          fi
+          echo "name=$name" >> $GITHUB_OUTPUT
+
+      - name: Rename firmware
+        run: |
+          mkdir -p artifacts
+          if [ -f build/zephyr/zmk.uf2 ]; then
+            cp build/zephyr/zmk.uf2 "artifacts/${{ steps.artifact-name.outputs.name }}.uf2"
+          elif [ -f build/zephyr/zmk.bin ]; then
+            cp build/zephyr/zmk.bin "artifacts/${{ steps.artifact-name.outputs.name }}.bin"
+          fi
+
+      - name: Upload firmware
+        uses: actions/upload-artifact@v5
+        with:
+          name: ${{ steps.artifact-name.outputs.name }}
+          path: artifacts/
+
+  merge:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Merge artifacts
+        uses: actions/upload-artifact/merge@v5
+        with:
+          name: firmware
+          delete-merged: true
