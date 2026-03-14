@@ -103,7 +103,7 @@ jobs:
     needs: build
     steps:
       - name: Merge artifacts
-        uses: actions/upload-artifact/merge@v5
+        uses: actions/upload-artifact/merge@v7
         with:
           name: firmware
           delete-merged: true
