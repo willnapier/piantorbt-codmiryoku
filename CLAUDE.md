@@ -86,7 +86,7 @@ west zephyr-export
 - Based on official Keebart repository structure
 - Left half configured as central (connects to computer)
 - Right half configured as peripheral (connects to left half)
-- GitHub Actions automatically builds firmware on push using build.yaml
+- GitHub Actions automatically builds firmware on push using a custom workflow (.github/workflows/build.yml) with the build matrix from build.yaml
 - Built-in features: deep sleep, RGB underglow, battery monitoring via MAX17048
 - nice!view displays enabled on both halves
 - Mouse pointing support enabled
@@ -94,7 +94,7 @@ west zephyr-export
 ### Layers
 0. BASE - Colemak-DH with home row mods
 1. SYM - Symbols
-2. NUM - Numbers/numpad
+2. NUM - Numbers/numpad + sticky modifier on right outer middle for tab switching (Alt on Linux, Cmd on macOS)
 3. NAV - Navigation + edit commands (Copy/Paste/Cut/Undo/Redo)
 4. MEDIA - Media controls and Bluetooth profiles
 5. MOUSE - Mouse emulation + edit commands (same as NAV)
