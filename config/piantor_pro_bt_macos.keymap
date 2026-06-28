@@ -146,6 +146,22 @@
             hold-trigger-on-release;
         };
 
+        // Positional hold-tap for the left-hand letter mods (Ctrl/Alt/GUI on A/R/S).
+        // Same bilateral guard as hml_shift: the hold only triggers in combination with
+        // a RIGHT-hand key, so same-hand rolls (e.g. a->z) can never produce Cmd/Ctrl+Z.
+        // Deliberate undo stays on the NAV layer, unaffected.
+        hml: home_row_left_mod {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            require-prior-idle-ms = <200>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 39 40 41>;
+            hold-trigger-on-release;
+        };
+
         // Right shift: triggers only on left-hand keys (positions 0-5, 12-17, 24-29, 36-38)
         hmr_shift: home_row_right_shift {
             compatible = "zmk,behavior-hold-tap";
@@ -290,7 +306,7 @@
         base_layer {
             bindings = <
                 &none           &kp Q           &kp W           &kp F           &kp P           &kp B           &kp J           &kp L           &kp U           &kp Y           &kp SQT         &question_combo
-                &smart_shift_left &mt LCTRL A   &mt LALT R      &mt LGUI S      &hml_shift LSHFT T     &kp G           &kp M           &hmr_shift RSHFT N     &hmr_cmd RGUI E      &mt RALT I      &mt RCTRL O     &smart_shift_right
+                &smart_shift_left &hml LCTRL A  &hml LALT R     &hml LGUI S      &hml_shift LSHFT T     &kp G           &kp M           &hmr_shift RSHFT N     &hmr_cmd RGUI E      &mt RALT I      &mt RCTRL O     &smart_shift_right
                 &none           &kp Z           &mt RALT X      &kp C           &kp D           &kp V           &kp K           &kp H           &kp COMMA       &mt RALT DOT    &slash_morph    &colon_semi
                                                         &lt MEDIA ESC           &lt NAV SPACE   &lt MOUSE TAB   &lt SYM RET     &lt NUM BSPC    &lt FUN ESC
             >;

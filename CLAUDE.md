@@ -112,6 +112,7 @@ west zephyr-export
 - **Simplified thumbs**: ESC/MEDIA on leftmost thumb (tap/hold)
 - **Symbol Combos**: 11 combos for ergonomic programming (2025-10-07)
 - **Navigation Combos**: 4 home row combos for tab/history navigation (2025-10-07)
+- **Bilateral home-row mods** (2026-06-28): left letter-mods A=Ctrl, R=Alt, S=Gui use the `hml` positional hold-tap — the hold only triggers with an opposite-hand (right) key. Prevents same-hand misfires such as a→z producing Ctrl-Z (which suspends the terminal). Shift mods (`hml_shift`/`hmr_shift`) were already bilateral; this extends the guard to the remaining left letter-mods on both keymaps.
 - **num_word**: REMOVED due to stability issues (see NUM_WORD_IMPLEMENTATION.md)
 
 ## Common Tasks
