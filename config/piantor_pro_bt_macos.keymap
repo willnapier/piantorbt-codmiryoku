@@ -220,7 +220,13 @@
 
         // U + Y = - (minus/hyphen)
         combo_minus {
-            timeout-ms = <50>;
+            // Tuned 2026-06-29 to fix bidirectional misfire (buy/guy -> "-", and a wanted
+            // "-" landing as "uy"): the prior-idle gate blocks the mid-word u->y roll (like
+            // the sibling combos), and the looser timeout lets the deliberate combo land.
+            // Safe to loosen here because "uy" never starts a word — unlike "lu"/colon,
+            // whose tight 50ms window we deliberately keep (lunch/luck/lure).
+            timeout-ms = <70>;
+            require-prior-idle-ms = <75>;
             key-positions = <8 9>;
             bindings = <&kp MINUS>;
             layers = <BASE>;
