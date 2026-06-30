@@ -111,7 +111,7 @@ west zephyr-export
 - **Shift Behaviors**: Leverages standard keyboard shift (e.g., Shift+EQUAL = PLUS)
 - **Simplified thumbs**: ESC/MEDIA on leftmost thumb (tap/hold)
 - **Symbol Combos**: 11 combos for ergonomic programming (2025-10-07)
-- **Navigation Combos**: 4 home row combos for tab/history navigation (2025-10-07)
+- **Shift Combos** (2026-06-30): home-row S+T / N+E fire a one-shot sticky Shift for single capitals (experimental). NB the earlier "tab/history navigation" combos (2025-10-07) are **no longer present** in either keymap.
 - **Bilateral home-row mods** (2026-06-28): left letter-mods A=Ctrl, R=Alt, S=Gui use the `hml` positional hold-tap — the hold only triggers with an opposite-hand (right) key. Prevents same-hand misfires such as a→z producing Ctrl-Z (which suspends the terminal). Shift mods (`hml_shift`/`hmr_shift`) were already bilateral; this extends the guard to the remaining left letter-mods on both keymaps.
 - **Ctrl+Z hard no-op** (both keymaps, 2026-06-28/29): base-layer Z is a `z_no_ctrl` mod-morph — Z alone = "z", but Z while **Left-Ctrl** is held emits nothing. Reads live modifier state, so it neutralises a *deliberately-held* A (=LCtrl) followed by Z — which the positional `hml` guard above cannot, because a sustained hold engages the mod by design. Kills terminal-suspend (SIGTSTP) at the source. Only Left-Ctrl is in the trigger mask, so **Right-Ctrl+Z and Cmd+Z are unaffected**. Applied to **both keymaps** for identical cross-platform behaviour. Undo is preserved on each platform via the NAV layer (macOS `td_cmdz`=Cmd+Z; Linux `td_ctrlz`=Ctrl+Z, a separate binding) — only the misfire-prone hold-A+Z route is removed.
 - **num_word**: REMOVED due to stability issues (see NUM_WORD_IMPLEMENTATION.md)
@@ -168,15 +168,18 @@ When making changes to layers other than NAV/MOUSE:
 
 **See:** [SYMBOL-COMBOS-IMPLEMENTATION.md](./SYMBOL-COMBOS-IMPLEMENTATION.md) for complete documentation
 
-### Navigation Combos (2025-10-07)
+### Shift Combos — one-shot capitals (2026-06-30, experimental)
 
-**Tab and history navigation on home row:**
+**Tap both keys of a home-row pair to arm a sticky Shift for the *next* letter** (one capital, then auto-releases):
 
-| Combo | macOS | Linux | Function |
-|-------|-------|-------|----------|
-| S+T | Cmd+Shift+[ | Ctrl+PgUp | Previous tab |
-| N+E | Cmd+Shift+] | Ctrl+PgDn | Next tab |
-| R+S | Cmd+[ | Alt+Left | Back in history |
-| E+I | Cmd+] | Alt+Right | Forward in history |
+| Combo | Positions | Emits | Suggested use |
+|-------|-----------|-------|---------------|
+| S+T | 15 16 | sticky **LSHIFT** | left-hand combo → capitalise a right-hand letter |
+| N+E | 19 20 | sticky **RSHIFT** | right-hand combo → capitalise a left-hand letter |
 
-**See:** [TAB-HISTORY-COMBOS-IMPLEMENTATION.md](./TAB-HISTORY-COMBOS-IMPLEMENTATION.md) for complete documentation
+- **Shift only — never Cmd/Ctrl** — so there is **no conflict with Cmd+Shift (or Ctrl+Shift) application shortcuts**.
+- Guarded by `require-prior-idle-ms = 200` + `timeout-ms = 40`: they will not fire during ordinary typing rolls (`st`, `ne`, `en` have no preceding pause), but *will* fire after a space — which is where capitals naturally fall.
+- **Tuning:** hard to trigger → raise `timeout-ms` toward 50; misfires on `st…`/`ne…` words typed after a pause → lower `timeout-ms` (~30) or raise `require-prior-idle-ms`. Restricted to `layers = <BASE>`; defined identically in both keymaps.
+- **Fallback for what this can't cover:** mid-word capitals (camelCase, acronyms) → hold-T / hold-N home-row Shift; runs of capitals → `caps_word` (NAV layer).
+
+**History:** an earlier revision (2025-10-07) documented S+T / N+E / R+S / E+I as tab- and history-navigation combos (Cmd+Shift+[, etc.). Those combos were since removed and are **not present in either keymap** as of 2026-06-30 — only the now-unused `prev_tab`/`next_tab` mod-morph behaviours remain. `TAB-HISTORY-COMBOS-IMPLEMENTATION.md` is therefore historical.
